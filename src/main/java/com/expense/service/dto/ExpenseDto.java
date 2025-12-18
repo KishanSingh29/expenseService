@@ -42,23 +42,23 @@ public class ExpenseDto {
     @JsonProperty(value = "created_at")
     private Timestamp createdAt;
 
-    public ExpenseDto(String json) {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
-
-            ExpenseDto expense = mapper.readValue(json, ExpenseDto.class);
-
-            this.externalId = expense.externalId;
-            this.amount = expense.amount;
-            this.userId = expense.userId;
-            this.merchant = expense.merchant;
-            this.currency = expense.currency;
-            this.createdAt = expense.createdAt;
-
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to deserialize ExpenseDto from JSON", e);
-        }
-    }
+//    public ExpenseDto(String json) {
+//        try {
+//            ObjectMapper mapper = new ObjectMapper();
+//            mapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
+//
+//            ExpenseDto expense = mapper.readValue(json, ExpenseDto.class);
+//
+//            this.externalId = expense.externalId;
+//            this.amount = expense.amount;
+//            this.userId = expense.userId;
+//            this.merchant = expense.merchant;
+//            this.currency = expense.currency;
+//            this.createdAt = expense.createdAt;
+//
+//        } catch (Exception e) {
+//            throw new RuntimeException("Failed to deserialize ExpenseDto from JSON", e);
+//        }
+//    }
 
 }

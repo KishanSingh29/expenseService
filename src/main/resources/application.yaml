@@ -1,3 +1,36 @@
 spring:
+  kafka:
+    bootstrap-servers: localhost:9092   # ✔ Correct for Windows host → Docker Kafka
+
+    consumer:
+      group-id: expense-info-consumer-group
+
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer   # ✔ FIXED
+
+      properties:
+        spring.json.trusted.packages: "*"              # ✔ FIXED format
+        spring.json.value.default.type: com.expense.service.dto.ExpenseDto   # ✔ FIXED
+        spring.json.use.type.headers: false            # ✔ FIX (prevent type header issues)
+
+    topic-json:
+      name: expense_service
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/expenseservice?useSSL=false&useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+    username: root
+    password: kishan
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQLDialect
+
   application:
     name: service
+
+server:
+  port: 9820
